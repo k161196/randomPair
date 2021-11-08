@@ -1,0 +1,82 @@
+<html>
+	<head>
+   <script type="text/javascript" src="https://slash-kiran-dev-ed.my.salesforce.com/support/api/53.0/lightning/opencti_min.js"></script>
+   <script type="text/javascript">							
+       	function screenPop() {
+
+
+
+               // document.getElementById('submit-button').addEventListener('click', function() {
+               //    var value = document.getElementById('input').value;
+               //    // Do what you want with the value
+               // });  
+
+            var value = document.getElementById('input').value;
+            console.log("(random.html):value, ",value)
+
+
+
+               //  var names = ["Sean","Kyle","Emily","Nick","Cotter","Brian","Jeremy","Kimmy","Pat","Johnny"];
+                var names =  value.split(',') || [];
+
+                  if (names.length % 2 != 0) {
+                     alert("You must have an even number of names. You currently have " + names.length + " names.");
+                  } else {
+                     var arr1 = names.slice(), // copy array
+                        arr2 = names.slice(); // copy array again
+
+                     arr1.sort(function() { return 0.5 - Math.random();}); // shuffle arrays
+                     arr2.sort(function() { return 0.5 - Math.random();});
+
+                     while (arr1.length) {
+                        var name1 = arr1.pop(), // get the last value of arr1
+                              name2 = arr2[0] == name1 ? arr2.pop() : arr2.shift();
+                              //        ^^ if the first value is the same as name1, 
+                              //           get the last value, otherwise get the first
+
+                        console.log(name1 + ' vs ' + name2);
+                     }
+                  }
+
+
+
+                  var names = ["Sean","Kyle","Emily","Nick"];
+    pickpool = names.slice(0); // Slice the array at the first element to copy it by value
+
+var used = [];
+var picks = [];
+
+if (names.length % 2 != 0) {
+    alert("You must have an even number of names. You currently have " + names.length + " names.");
+}
+
+for( var i = 0; i < names.length; i++){
+
+    var random = Math.floor(Math.random()*pickpool.length)
+
+    if(names[random] == names[i]) {
+        // names[random] = names[random++];
+        picks.push(names[i] + " gets " + pickpool[random++]);
+        pickpool.splice(random++,1);
+    } else {
+        picks.push(names[i] + " gets " + pickpool[random]);
+        pickpool.splice(random,1);
+    }
+}
+console.log("picked array: ");
+for(var k=0; k<picks.length; k++) {
+    console.log(picks[k]);
+}
+        	}
+
+
+
+      
+</script>
+</head>
+<body>
+   <textarea rows="4" cols="50" name="comment" id="input">
+</textarea>
+       <button onclick="screenPop();">screenPop</button>
+</body>
+</html>
